@@ -70,7 +70,7 @@ def build_report() -> str:
 def send_email(body: str):
     user = os.environ["GMAIL_USER"]
     app_pw = os.environ["GMAIL_APP_PASSWORD"]
-    to = os.environ.get("MAIL_TO", user)
+    to = os.environ.get("MAIL_TO", "").strip() or user
 
     msg = MIMEText(body, "plain", "utf-8")
     msg["Subject"] = Header(f"週次リサーチ {date.today():%m/%d}", "utf-8")
